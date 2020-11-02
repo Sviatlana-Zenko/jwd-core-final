@@ -8,10 +8,10 @@
 * Use slf4j for logging your actions (You should store INFO or higher messages in output log files, which have 5 generations)
 * You are NOT able to use any codegenerators (i.e. Lombok)
 * Console input should be done using java.util.Scanner
-* First row in input files contains fields order for corresponding entity
+* Input files contains structure description, starts with hash
 
 ###Mandatory tasks: 
-* In domain package update POJO based on requirements
+* In domain package update entity based on requirements
 * Implements service interfaces
 * Extend missed criteria implementations
 * Update custom exception with meaningful messages (feel free to create your own exceptions, if you need them)
@@ -19,7 +19,6 @@
 * Design UI for ApplicationMenu (user should be able to get/update information about CrewMembers, Spaceships. 
 Able to create/update mission information). 
 Able to write information about selected mission(s) in output file in json format
-
 
 
 
