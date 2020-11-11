@@ -1,7 +1,6 @@
 package com.epam.jwd.core_final.exception;
 
 public class UnknownEntityException extends RuntimeException {
-
     private final String entityName;
     private final Object[] args;
 
@@ -21,6 +20,6 @@ public class UnknownEntityException extends RuntimeException {
     public String getMessage() {
         // todo
         // you should use entityName, args (if necessary)
-        return null;
+        return "There is no such " + entityName;
     }
 }

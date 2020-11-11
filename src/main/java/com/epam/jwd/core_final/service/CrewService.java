@@ -2,7 +2,9 @@ package com.epam.jwd.core_final.service;
 
 import com.epam.jwd.core_final.criteria.Criteria;
 import com.epam.jwd.core_final.domain.CrewMember;
-
+import com.epam.jwd.core_final.domain.FlightMission;
+import com.epam.jwd.core_final.exception.AssignationException;
+import com.epam.jwd.core_final.exception.EntityDuplicateException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,12 +20,13 @@ public interface CrewService {
 
     Optional<CrewMember> findCrewMemberByCriteria(Criteria<? extends CrewMember> criteria);
 
-    CrewMember updateCrewMemberDetails(CrewMember crewMember);
+    CrewMember updateCrewMemberDetails(CrewMember crewMember, Criteria<? extends CrewMember> criteria);
 
     // todo create custom exception for case, when crewMember is not able to be assigned
-    void assignCrewMemberOnMission(CrewMember crewMember) throws RuntimeException;
+    void assignCrewMemberOnMission(FlightMission flightMission, CrewMember crewMember) throws AssignationException;
 
     // todo create custom exception for case, when crewMember is not able to be created (for example - duplicate.
-    // crewmember unique criteria - only name!
-    CrewMember createCrewMember(CrewMember spaceship) throws RuntimeException;
+    // crewMember unique criteria - only name!
+    CrewMember createCrewMember(List<String> infoFromFile) throws EntityDuplicateException;
+
 }

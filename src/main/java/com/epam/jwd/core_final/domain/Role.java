@@ -1,6 +1,9 @@
 package com.epam.jwd.core_final.domain;
 
 import com.epam.jwd.core_final.exception.UnknownEntityException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 public enum Role implements BaseEntity {
     MISSION_SPECIALIST(1L),
@@ -24,7 +27,7 @@ public enum Role implements BaseEntity {
      */
     @Override
     public String getName() {
-        return null;
+        return name().toLowerCase().replace("_", " ");
     }
 
     /**
@@ -32,6 +35,19 @@ public enum Role implements BaseEntity {
      * @throws UnknownEntityException if such id does not exist
      */
     public static Role resolveRoleById(int id) {
-        return null;
+        Role roleById;
+        List<Role> ranks = Arrays.asList(Role.values());
+        Predicate<Role> rolePredicate = role -> role.getId() == id;
+
+        if (ranks.stream().anyMatch(rolePredicate)) {
+            roleById = ranks.stream()
+                    .filter(rolePredicate)
+                    .findFirst()
+                    .get();
+        } else {
+            throw new UnknownEntityException(Role.class.getName());
+        }
+
+        return roleById;
     }
 }
